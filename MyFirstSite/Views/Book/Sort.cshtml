@@ -1,0 +1,12 @@
+﻿@model List<BookModel>
+
+<p>Listing books by category</p>
+
+<li>Search Results:</li>
+@for (var i = 0; i < Model.Count; i++)
+{
+    //izlistaj gi site knigi koi sto pripagjaat na selektiranta kategorija
+    <ul>
+        <li>@Model[i].Title</li>
+    </ul>
+}

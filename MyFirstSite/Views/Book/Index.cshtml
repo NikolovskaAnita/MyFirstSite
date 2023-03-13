@@ -22,7 +22,7 @@
                 <td>@Model[i].Title</td>
                 <td>@Model[i].Author</td>
                 <td>@Model[i].Description</td>
-                <td>@Model[i].Category</td>
+                <td>@Model[i].Category.Name</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@Model[i].Id" class="btn btn-primary">Details</a>
                 </td>
@@ -30,3 +30,34 @@
         }
     </tbody>
 </table>
+
+
+<div class="row">
+    <div class="col-sm-6">
+        @using (Html.BeginForm("Book", "Home", FormMethod.Get, new { id = "Form1" }))
+        {
+            <div class="col-sm-8">
+                Sort by:
+                @Html.DropDownList("OrderBy", new List<SelectListItem>
+
+            {
+            new SelectListItem{Text="Crime", Value = "1" },
+            new SelectListItem{Text="Fantasy", Value = "2" },
+            new SelectListItem{Text="Classics", Value = "3" },
+            new SelectListItem{Text="Horror", Value = "4" },
+            new SelectListItem{Text="Adventure", Value = "5" },
+            new SelectListItem{Text="Bestseller", Value = "6" },
+            new SelectListItem{Text="Other", Value = "7" }
+            }, "-- Order By --")
+
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a asp-action="Sort" asp-route-id="Sort" class="btn btn-primary">Filter</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

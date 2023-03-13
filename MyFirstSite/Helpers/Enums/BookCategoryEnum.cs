@@ -12,4 +12,13 @@ namespace MyFirstSite.Helpers.Enums
         Bestseller,
         Other
     }
+
+    /*public static string CategoryToList()
+    {
+        List<BookCategoryEnum> bookCategoryEnum = Enum.GetValues(typeof(BookCategoryEnum))
+                            .Cast<BookCategoryEnum>()
+                            .ToList();
+
+        return String.Join(Environment.NewLine, bookCategoryEnum);
+    }*/
 }

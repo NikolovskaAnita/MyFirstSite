@@ -13,7 +13,7 @@ namespace MyFirstSite.Mappers
                 Title = book.Title,
                 Author = book.Author,
                 Description = book.Description,
-                Category = book.Category,
+                Category = book.Category.ToViewModel()
             };
         }
     }

@@ -1,0 +1,67 @@
+﻿@model List<CategoryModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!--<div>
+    <label for="category">Choose a category:</label>
+
+    <select name="category" id="books">
+        <option value="crime">Crime</option>
+        <option value="fantasy,">Fantasy</option>
+        <option value="classics">Classics</option>
+        <option value="horror">Horror</option>
+        <option value="adventure">Adventure</option>
+        <option value="bestseller">Bestseller</option>
+        <option value="other">Other</option>
+    </select>
+</div>-->
+
+<!--<div>
+    <label for="category">Choose a category:</label>
+    <select name="category" id="books">
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            <option value="@Model[i].Name">@Model[i].Name</option>
+        }
+    </select>
+</div>-->
+
+<div class="row">
+    <div class="col-sm-6">
+        @using (Html.BeginForm("Book", "Home", FormMethod.Get, new { id = "Form1" }))
+        {
+            <div class="col-sm-8">
+                Sort by:
+                @Html.DropDownList("OrderBy", new List<SelectListItem>
+
+            {
+            new SelectListItem{ Text="Crime", Value = "1" },
+            new SelectListItem{ Text="Fantasy", Value = "2" },
+            new SelectListItem{ Text="Classics", Value = "3" },
+            new SelectListItem{ Text="Horror", Value = "4" },
+            new SelectListItem{ Text="Adventure", Value = "5" },
+            new SelectListItem{ Text="Bestseller", Value = "6" },
+            new SelectListItem{ Text="Other", Value = "7" }
+            }, "-- Order By --")
+
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Filter" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <ul>
+            <li>Search Results</li>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <li>@Model[i].Name</li>
+            }
+        </ul>
+    </div>
+</div>
