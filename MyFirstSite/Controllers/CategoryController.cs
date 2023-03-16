@@ -87,6 +87,12 @@ namespace MyFirstSite.Controllers
                 throw new Exception($"Category with Id {id} does not exist");
             }
 
+            var bookCategory = BookDb.Books.Where(x => x.Category.Id == id).ToList();
+            foreach(var bookCat in bookCategory)
+            {
+                BookDb.Books.Remove(bookCat);
+            }
+
             BookDb.Categories.Remove(existingCategory);
 
             return RedirectToAction("Index");
