@@ -1,8 +1,9 @@
 ﻿@model BookModel
 
-<div>
-    <h3>@Model.Title</h3>
-    <h6>by @Model.Author</h6>
-    <span>Category - @Model.Category</span>
-    <p>@Model.Description</p>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <span>Category - @Model.Category.Name</span>
+        <p class="card-text">@Model.Description</p>
+    </div>
 </div>

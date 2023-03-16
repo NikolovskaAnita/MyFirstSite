@@ -1,0 +1,42 @@
+﻿@model BookModel
+
+<form method="post" asp-action="Save" asp-controller="Book" >
+    <input type="hidden" asp-for="Id"/>
+
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Author"></label>
+        <input asp-for="Author" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+    </div>
+
+    <!--<div class="form-group">
+        <label asp-for="Category.Name"></label>
+        <input asp-for="Category.Name" />
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button" asp-for="Category.Name">Crime</button>
+            <button class="dropdown-item" type="button" asp-for="Category.Name">Fantasy</button>
+            <button class="dropdown-item" type="button" asp-for="Category.Name">Classics</button>
+            <button class="dropdown-item" type="button" asp-for="Category.Name">Horror</button>
+            <button class="dropdown-item" type="button" asp-for="Category.Name">Adventure</button>
+            <button class="dropdown-item" type="button" asp-for="Category.Name">Bestseller</button>
+            <button class="dropdown-item" type="button" asp-for="Category.Name">Other</button>
+        </div>
+    </div>-->
+
+    <hr />
+    <input type="submit" class="btn btn-secondary float-right" value="Save" />
+</form>

@@ -1,4 +1,5 @@
-﻿using MyFirstSite.Models;
+﻿using MyFirstSite.Helpers.Enums;
+using MyFirstSite.Models;
 
 namespace MyFirstSite.DomainModels
 {
@@ -9,10 +10,19 @@ namespace MyFirstSite.DomainModels
         public string? Author { get; set; }
         public string? Description { get; set; }
         public Category? Category { get; set; }
+         //public BookCategoryEnum Category { get; set; }
 
         public Book(){}
 
-        public Book(int id, string title, string author, string description, Category category)
+        public Book(int id, string title, string author, string description)
+        {
+            Id = id;
+            Title = title;
+            Author = author;
+            Description = description;
+        }
+
+        public Book(int id, string title, string author, string description, Category? category)
         {
             Id = id;
             Title = title;

@@ -31,6 +31,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Category
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-action="Sort" asp-controller="Book">Crime</a>
+                                <a class="dropdown-item" asp-action="Sort" asp-controller="Book">Fantasy</a>
+                                <a class="dropdown-item" asp-action="Sort" asp-controller="Book">Classics</a>
+                                <a class="dropdown-item" asp-action="Sort" asp-controller="Book">Horror</a>
+                                <a class="dropdown-item" asp-action="Sort" asp-controller="Book">Adventure</a>
+                                <a class="dropdown-item" asp-action="Sort" asp-controller="Book">Bestseller</a>
+                                <a class="dropdown-item" asp-action="Sort" asp-controller="Book">Other</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,11 @@
+﻿@model CategoryModel
+
+<form method="post" asp-action="Save" asp-controller="Category">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+    <input type="submit" class="btn btn-secondary float-right" value="Save" />
+</form>

@@ -3,65 +3,26 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<!--<div>
-    <label for="category">Choose a category:</label>
-
-    <select name="category" id="books">
-        <option value="crime">Crime</option>
-        <option value="fantasy,">Fantasy</option>
-        <option value="classics">Classics</option>
-        <option value="horror">Horror</option>
-        <option value="adventure">Adventure</option>
-        <option value="bestseller">Bestseller</option>
-        <option value="other">Other</option>
-    </select>
-</div>-->
-
-<!--<div>
-    <label for="category">Choose a category:</label>
-    <select name="category" id="books">
+<table class="table  table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
         @for (var i = 0; i < Model.Count; i++)
         {
-            <option value="@Model[i].Name">@Model[i].Name</option>
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td>@Model[i].Name</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@Model[i].Id" class="btn btn-primary">Details</a>
+                    <a asp-action="CreateEditCategory" asp-route-id="@Model[i].Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-controller="Category" asp-route-id="@Model[i].Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
         }
-    </select>
-</div>-->
-
-<div class="row">
-    <div class="col-sm-6">
-        @using (Html.BeginForm("Book", "Home", FormMethod.Get, new { id = "Form1" }))
-        {
-            <div class="col-sm-8">
-                Sort by:
-                @Html.DropDownList("OrderBy", new List<SelectListItem>
-
-            {
-            new SelectListItem{ Text="Crime", Value = "1" },
-            new SelectListItem{ Text="Fantasy", Value = "2" },
-            new SelectListItem{ Text="Classics", Value = "3" },
-            new SelectListItem{ Text="Horror", Value = "4" },
-            new SelectListItem{ Text="Adventure", Value = "5" },
-            new SelectListItem{ Text="Bestseller", Value = "6" },
-            new SelectListItem{ Text="Other", Value = "7" }
-            }, "-- Order By --")
-
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-default" value="Filter" />
-                    </div>
-                </div>
-            </div>
-        }
-
-        <ul>
-            <li>Search Results</li>
-            @for (var i = 0; i < Model.Count; i++)
-            {
-                <li>@Model[i].Name</li>
-            }
-        </ul>
-    </div>
-</div>
+    </tbody>
+</table>

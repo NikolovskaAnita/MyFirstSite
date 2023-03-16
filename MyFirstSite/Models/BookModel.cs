@@ -1,4 +1,5 @@
-﻿using MyFirstSite.Helpers.Enums;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MyFirstSite.Helpers.Enums;
 
 namespace MyFirstSite.Models
 {
@@ -8,6 +9,7 @@ namespace MyFirstSite.Models
         public string? Title { get; set; }
         public string? Author { get; set; }
         public string? Description { get; set; }
-        public CategoryModel Category { get; set; }
+        public CategoryModel? Category { get; set; }
+        //public BookCategoryEnum Category { get; set; }
     }
 }

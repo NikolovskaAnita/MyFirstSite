@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MyFirstSite.Helpers.Enums;
+using MyFirstSite.DomainModels;
+using MyFirstSite.Helpers;
 using MyFirstSite.Helpers.LocalDB;
 using MyFirstSite.Mappers;
 using MyFirstSite.Models;
+using System.Net;
+using System.Xml.Linq;
 
 namespace MyFirstSite.Controllers
 {
@@ -27,31 +31,93 @@ namespace MyFirstSite.Controllers
             return View(book.ToViewModel());
         }
 
-        [HttpGet]
-        public IActionResult CategorySort(string category)
+        public IActionResult Sort(string selectOption)
         {
-            /*for (int i = 1; i <= 7; i++)
+            var book = BookDb.Books.Select(x => x.ToViewModel());
+            //var book = BookDb.Books.Select(x => x.Category.Name.ToLower() == selectOption.ToLower());
+            //var book = BookDb.Books.FirstOrDefault(x => x.Category.Name == selectOption);
+
+            if (selectOption == null) 
             {
-                if(categoryId == i)
+                throw new Exception("No category selected");
+            }
+
+            while (selectOption != null)
+            { 
+                book = book.Where(a => a.Category.Name.ToLower().Equals(selectOption.ToLower()));
+                break;
+            }
+
+            return View(book.ToList());
+        }
+
+        public IActionResult CreateEditBook(int? id)
+        {
+            var model = new BookModel();
+
+            if (id.HasValue)
+            {
+                var domainModel = BookDb.Books.FirstOrDefault(x => x.Id == id.Value);
+
+                if(domainModel == null) 
                 {
-                    var book = BookDb.Books.Select(x => x.ToViewModel()).ToList();
-                    return View(book);
+                    throw new Exception("Book with that ID does not exist.");
                 }
-            }*/
-            /*List<SelectListItem> categoryList = new List<SelectListItem>();
-            categoryList.Add(new SelectListItem() { Text = "Crime", Value = "crime" });
-            categoryList.Add(new SelectListItem() { Text = "Fantasy", Value = "fantasy" });
-            categoryList.Add(new SelectListItem() { Text = "Classics", Value = "classics" });
-            categoryList.Add(new SelectListItem() { Text = "Horror", Value = "horror" });
-            categoryList.Add(new SelectListItem() { Text = "Adventure", Value = "adventure" });
-            categoryList.Add(new SelectListItem() { Text = "Bestseller", Value = "bestseller" });
-            categoryList.Add(new SelectListItem() { Text = "Other", Value = "other" });*/
+                model = domainModel.ToViewModel();
+            }
 
-            var categorySort = BookDb.Books.Where(x => x.Category.Name == category);
+            return View(model);
+        }
 
+        [HttpPost]
+        public IActionResult Save(BookModel book)
+        {
+            if(string.IsNullOrEmpty(book.Title) 
+                || string.IsNullOrEmpty(book.Author)
+                || string.IsNullOrEmpty(book.Description))
+            {
+                throw new Exception("Please fill out all the properties");
+            }
 
-            ViewBag.category = BookDb.Books.Select(x => x.Category).ToList();
-            return View(categorySort.ToList());
+            if(BookDb.Books.Any(x => x.Title.ToLower() == book.Title.ToLower() && x.Id != book.Id))
+            {
+                throw new Exception($"Book with the name {book.Title} already exists");
+            }
+
+            if(book.Id == 0)
+            {
+                var model = new Book(IdHelper.GetRandomId(), book.Title, book.Author, book.Description);
+                BookDb.Books.Add(model);
+                return RedirectToAction("Index");
+            }
+
+            var existingBook = BookDb.Books.FirstOrDefault(x => x.Id == book.Id);
+            if(existingBook == null) 
+            {
+                throw new Exception($"Book with {book.Id} does not exist");
+            }
+
+            BookDb.Books.Remove(existingBook);
+            existingBook.Title = book.Title;
+            existingBook.Author = book.Author;
+            existingBook.Description = book.Description;
+            BookDb.Books.Add(existingBook);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var existingBook = BookDb.Books.FirstOrDefault(x => x.Id == id);
+            if(existingBook == null)
+            {
+                throw new Exception($"Book with Id {id} does not exist");
+            }
+
+            BookDb.Books.Remove(existingBook);
+
+            return RedirectToAction("Index");
         }
     }
 }
+
