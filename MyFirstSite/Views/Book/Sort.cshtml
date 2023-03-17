@@ -1,29 +1,16 @@
-﻿@model List<BookModel>
+﻿@model BookCategorySortModel
 
-@{
-    ViewBag.Title = "Sort";
-}
+<form asp-action="SortCategory" method="post">
+    <input type="hidden" asp-for="Id" />
 
-<h2>Books by category:</h2>
+    <div class="form-group">
+        <label asp-for="SelectedCategoryId"></label>
+        <select asp-for="SelectedCategoryId" asp-items="@(IEnumerable<SelectListItem>) ViewBag.Categories">
+            <option>-- Please select category --</option>
+        </select>
+    </div>
 
+    <hr />
+    <input type="submit" class="btn btn-secondary" value="SortCategory" />
 
-<table class="table table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (var i = 0; i < Model.Count; i++)
-        {
-            <tr>
-                <th scope="row">@(i + 1)</th>
-                <td>@Model[i].Title</td>
-                <td>@Model[i].Author</td>
-            </tr>
-        }
-    </tbody>
-</table>
+</form>

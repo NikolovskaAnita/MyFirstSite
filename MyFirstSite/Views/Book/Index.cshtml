@@ -25,7 +25,7 @@
                 <td>@Model[i].Category.Name</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@Model[i].Id" class="btn btn-primary">Details</a>
-                    <a asp-action="CreateEditBook" asp-route-id="@Model[i].Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="CreateEditBook" asp-route-id="@Model[i].Id" class="btn btn-secondary">Edit</a>
                     <a asp-action="Delete" asp-route-id="@Model[i].Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>

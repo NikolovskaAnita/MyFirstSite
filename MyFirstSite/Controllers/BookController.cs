@@ -31,7 +31,8 @@ namespace MyFirstSite.Controllers
             return View(book.ToViewModel());
         }
 
-        public IActionResult Sort(string selectOption)
+        /*[HttpPost]
+        public IActionResult SortCategory(string selectOption)
         {
             var book = BookDb.Books.Select(x => x.ToViewModel());
             //var book = BookDb.Books.Select(x => x.Category.Name.ToLower() == selectOption.ToLower());
@@ -49,6 +50,43 @@ namespace MyFirstSite.Controllers
             }
 
             return View(book.ToList());
+        }*/
+
+        public IActionResult Sort(int? id)
+        {
+            var categoryItem = new BookCategorySortModel();
+
+            if (id.HasValue)
+            {
+                var item = BookDb.Categories.FirstOrDefault(x => x.Id == id);
+
+                if (id == null)
+                {
+                    throw new Exception($"Menu item with Id {id} does not exist");
+                }
+
+                categoryItem = new BookCategorySortModel
+                {
+                    Id = item.Id,
+                    
+                };
+            }
+
+            ViewBag.Categories = BookDb.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();
+
+            return View(categoryItem);
+        }
+
+        [HttpPost]
+        public IActionResult SortCategory(BookCategorySortModel model)
+        {
+            var matchingCategory = BookDb.Categories.FirstOrDefault(x => x.Id == model.Id);
+            if(matchingCategory == null)
+            {
+                throw new Exception("Category not selected");
+            }
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult CreateEditBook(int? id)

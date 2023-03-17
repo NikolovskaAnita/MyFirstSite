@@ -1,0 +1,21 @@
+﻿@model MenuItemCreateEditModel
+
+<form asp-action="Save" method="post">
+    <input type="hidden" asp-for="Id"/>
+
+    <div class="form-group">
+        <label asp-for="SelectedBookId"></label>
+        <select asp-for="SelectedBookId" asp-items="@(IEnumerable<SelectListItem>) ViewBag.Books">
+            <option>-- Please select book --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <hr />
+    <input type="submit" class="btn btn-secondary" value="Save"/>
+
+</form>

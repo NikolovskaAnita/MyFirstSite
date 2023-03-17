@@ -31,5 +31,20 @@ namespace MyFirstSite.Helpers.LocalDB
             new Book(IdHelper.GetRandomId(), "Diary of a Wimpy Kid", "Jeff Kinney", "Some description 10", /*BookCategoryEnum.Other*/Categories[6]),
             new Book(IdHelper.GetRandomId(), "Percy Jackson and the Olympians", "Rick Riordan", "Some description 11", /*BookCategoryEnum.Fantasy*/Categories[1])
         };
+
+        public static List<MenuItem> MenuItems = new List<MenuItem>
+        {
+            new MenuItem(IdHelper.GetRandomId(), Books[0], 5),
+            new MenuItem(IdHelper.GetRandomId(), Books[2], 4),
+            new MenuItem(IdHelper.GetRandomId(), Books[5], 5),
+            new MenuItem(IdHelper.GetRandomId(), Books[1], 2),
+            new MenuItem(IdHelper.GetRandomId(), Books[8], 3),
+            new MenuItem(IdHelper.GetRandomId(), Books[3], 2),
+            new MenuItem(IdHelper.GetRandomId(), Books[10], 1),
+            new MenuItem(IdHelper.GetRandomId(), Books[4], 1),
+            new MenuItem(IdHelper.GetRandomId(), Books[7], 3),
+            new MenuItem(IdHelper.GetRandomId(), Books[9], 3),
+            new MenuItem(IdHelper.GetRandomId(), Books[6], 4)
+        };
     }
 }
