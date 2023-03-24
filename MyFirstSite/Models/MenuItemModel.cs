@@ -5,7 +5,7 @@ namespace MyFirstSite.Models
     public class MenuItemModel
     {
         public int Id { get; set; }
-        public BookModel Book { get; set; }
+        public BookModel? Book { get; set; }
         public decimal Price { get; set; }
 
         public override string ToString()

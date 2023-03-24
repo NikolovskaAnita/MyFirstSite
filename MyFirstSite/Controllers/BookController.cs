@@ -31,8 +31,8 @@ namespace MyFirstSite.Controllers
             return View(book.ToViewModel());
         }
 
-        /*[HttpPost]
-        public IActionResult SortCategory(string selectOption)
+        /*
+        public IActionResult Sort(string selectOption)
         {
             var book = BookDb.Books.Select(x => x.ToViewModel());
             //var book = BookDb.Books.Select(x => x.Category.Name.ToLower() == selectOption.ToLower());
@@ -68,7 +68,7 @@ namespace MyFirstSite.Controllers
                 categoryItem = new BookCategorySortModel
                 {
                     Id = item.Id,
-                    
+
                 };
             }
 

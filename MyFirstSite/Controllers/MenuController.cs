@@ -26,9 +26,9 @@ namespace MyFirstSite.Controllers
             {
                 var item = BookDb.MenuItems.FirstOrDefault(x => x.Id == id);
 
-                if (id == null)
+                if (item == null)
                 {
-                    throw new Exception($"Menu item with Id {id} does not exist");
+                    throw new Exception($"Menu item with Id {item} does not exist");
                 }
 
                 menuItem = new MenuItemCreateEditModel

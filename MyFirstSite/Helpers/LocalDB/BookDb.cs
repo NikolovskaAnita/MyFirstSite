@@ -46,5 +46,7 @@ namespace MyFirstSite.Helpers.LocalDB
             new MenuItem(IdHelper.GetRandomId(), Books[9], 3),
             new MenuItem(IdHelper.GetRandomId(), Books[6], 4)
         };
+
+        public static List<Order> Orders = new List<Order>();
     }
 }
